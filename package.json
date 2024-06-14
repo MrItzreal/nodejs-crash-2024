@@ -8,5 +8,8 @@
     "start": "node server.js"
   },
   "author": "Izzy",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
 }
