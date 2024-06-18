@@ -44,6 +44,24 @@ const getUsersByIdHandler = (req, res) => {
   res.end();
 };
 
+// Route handler for POST /api/users
+/*This creates a new user and saves it locally. Since we do not have a database, the data will disappear when the server is refreshed.
+ */
+const createUsersHandler = (req, res) => {
+  let body = "";
+  // .on listens for events in this case "data" & "end"
+  req.on("data", (chunk) => {
+    body += chunk.toString();
+  });
+  req.on("end", () => {
+    const newUser = JSON.parse(body);
+    users.push(newUser);
+    res.statusCode = 201;
+    res.write(JSON.stringify(newUser));
+    res.end();
+  });
+};
+
 // Not found handler
 const notFoundHandler = (req, res) => {
   res.statusCode = 404;
@@ -61,6 +79,8 @@ const server = createServer((req, res) => {
         req.method === "GET"
       ) {
         getUsersByIdHandler(req, res);
+      } else if (req.url === "/api/users" && req.method === "POST") {
+        createUsersHandler(req, res);
       } else {
         notFoundHandler(req, res);
       }
