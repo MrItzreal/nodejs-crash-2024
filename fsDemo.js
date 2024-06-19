@@ -1,6 +1,5 @@
 // import fs from "fs";
 import fs from "fs/promises";
-import { log } from "util";
 
 // FS stands for File System
 // readFile() - callback
