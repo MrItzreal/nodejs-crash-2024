@@ -1,0 +1,2 @@
+I'm learning the PERN stack which is:
+Psql/Express/React/Node
