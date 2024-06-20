@@ -37,3 +37,9 @@ const decipher = crypto.createDecipheriv(algorithm, key, iv);
 let decrypted = decipher.update(encrypted, "hex", "utf8");
 decrypted += decipher.final("utf8");
 console.log(decrypted);
+
+/* IMPORTANT NOTES:
+- Algorithms like: "sha256", "aes-256-cbc", "hex" , "utf8" all mean something they are not just randomly used.
+### The order of arguments matters when encrypting & decrypting:
+- For instance, let encrypted = cipher.update("Learning the PERN stack", "utf8", "hex"): this says: "turn this sentence (Learning the PERN stack) which is in a string format (utf8) into an encoded version like ("hex")."
+- Whereas, let decrypted = decipher.update(encrypted, "hex", "utf8"): here we say: "turn my encrypted message which is in a "hex" version into a string which is "utf8" format."*/
